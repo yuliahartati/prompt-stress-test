@@ -103,17 +103,18 @@ Prompt:
     with st.spinner("Running stress test..."):
 
         response = client.chat.completions.create(
-            model="gpt-5-mini",
-            messages=[
-                {
-                    "role":"system",
-                    "content":"You are an expert Prompt Engineering evaluator."
-                },
-                {
-                    "role":"user",
-                    "content":analysis_prompt
-                }
-            ]
+    model="gpt-5-mini",
+    response_format={"type": "json_object"},
+    messages=[
+        {
+            "role":"system",
+            "content":"You are an expert Prompt Engineering evaluator. Always return valid JSON only."
+        },
+        {
+            "role":"user",
+            "content":analysis_prompt
+        }
+    ]
         )
 
     try:
